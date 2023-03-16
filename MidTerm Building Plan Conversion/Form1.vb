@@ -11,12 +11,49 @@ Public Class frmBuildingPlansConversion
 
     Private Sub btnConvert_Click(sender As Object, e As EventArgs) Handles btnConvert.Click
         'Declare variables for conversions
-        Dim strinches As String
-        Dim strMeasurementconversion As String
-        Dim decinches As Decimal
-        Dim inches As Integer
-        Dim meters As Integer
-        Dim decMeasurementconversion As Decimal = 0D
+
+
+
+
+        Dim decMeasurementconversion As Decimal
+        Dim decmeters As Decimal = 0.0254D
+        Dim decinches As Decimal = 39.37D
+        Dim decLength As Decimal
+        Dim deconvert As Decimal
+
+
+
+
+        If IsNumeric(txtuservalueentry.Text) Then
+            decMeasurementconversion = Convert.ToDecimal(txtuservalueentry.Text)
+            'Determine lenghth is greater than 0
+
+            If decMeasurementconversion > 0 Then
+                If rbtnInchestoMeters.Checked Then
+                    deconvert = decinches
+                    'Display Length
+                    decLength = decMeasurementconversion * decmeters
+                    lblMeasurementsDisplay.Text = decLength.ToString("")
+                ElseIf rbtnMeterstoInches.Checked Then
+                    deconvert = decmeters
+                    'Display length
+                    decLength = decMeasurementconversion * decinches
+                    lblMeasurementsDisplay.Text = decLength.ToString("")
+                End If
+
+            Else
+                'Display error message
+                MsgBox("You entered " & decMeasurementconversion.ToString() & " . Enter a Positive Number ",, "Input Error")
+                txtuservalueentry.Text = ""
+                txtuservalueentry.Focus()
+
+            End If
+        Else
+            'Dispay error message if use entered a nonnumeric value
+            MsgBox("Input Error",, "Nonnumeric Input")
+            txtuservalueentry.Text = ""
+            txtuservalueentry.Focus()
+        End If
 
 
 
@@ -24,33 +61,12 @@ Public Class frmBuildingPlansConversion
 
 
 
-        Dim dectotal As Decimal = meters = inches / 39.37 Or meters = inches * 0.0254
 
 
 
 
 
 
-        Dim strBoxMsg As String = "The measurement must be greater than zero"
-        Dim strIBoxTitle As String = "Input Error"
-        Dim strNotNumericErrMsg As String = "Enter a positive number"
-        Dim strNegErrMsg As String = "Enter a positive number"
-
-
-        Dim intinchesmeasurements = ""
-        Dim metersmeasurements = ""
-        Dim intMinEntries As Integer = 0
-        Dim intEntries As Integer = 1
-
-
-
-
-
-
-
-
-
-        meters = inches / 39.37 Or meters = inches * 0.0254
 
 
 
@@ -64,9 +80,8 @@ Public Class frmBuildingPlansConversion
 
     End Sub
 
-    Private Sub frmBuildingPlansConversion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
+
 
 
 
@@ -74,18 +89,25 @@ Public Class frmBuildingPlansConversion
 
         txtuservalueentry.Clear()
         grpboxconvertmeasurement.Select()
-        lblMeasurementsDisplay.Text = ""
         btnClear.Enabled = True
+        lblMeasurementsDisplay.Text = ""
+        rbtnInchestoMeters.Checked = True
+        rbtnMeterstoInches.Checked = False
+
 
 
 
     End Sub
 
-    Private Sub lblMeasurementsDisplay_Click(sender As Object, e As EventArgs) Handles lblMeasurementsDisplay.Click
 
-    End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Close()
+    End Sub
+
+    Private Sub frmBuildingPlansConversion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        txtuservalueentry.Focus()
+        lblMeasurementsDisplay.Text = ""
     End Sub
 End Class

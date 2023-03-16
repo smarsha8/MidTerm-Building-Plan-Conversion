@@ -161,9 +161,9 @@ Partial Class frmBuildingPlansConversion
         Me.lblMeasurementsDisplay.AutoSize = True
         Me.lblMeasurementsDisplay.Location = New System.Drawing.Point(992, 529)
         Me.lblMeasurementsDisplay.Name = "lblMeasurementsDisplay"
-        Me.lblMeasurementsDisplay.Size = New System.Drawing.Size(181, 20)
+        Me.lblMeasurementsDisplay.Size = New System.Drawing.Size(115, 20)
         Me.lblMeasurementsDisplay.TabIndex = 9
-        Me.lblMeasurementsDisplay.Text = "lblMeasurementsDisplay"
+        Me.lblMeasurementsDisplay.Text = "Measurements"
         Me.lblMeasurementsDisplay.UseWaitCursor = True
         '
         'frmBuildingPlansConversion
